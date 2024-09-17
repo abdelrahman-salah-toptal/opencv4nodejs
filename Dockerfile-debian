@@ -1,4 +1,4 @@
-FROM node:18 As build
+FROM node:22.8.0 As build
 
 RUN apt update && apt -y upgrade && apt -y install build-essential cmake
 ENV OPENCV_BUILD_ROOT=/usr/src/opencv
@@ -19,7 +19,7 @@ RUN rimraf /usr/src/opencv/opencv-*/build/share/
 RUN find /usr/src/opencv/ -type f -empty -print -delete
 RUN find /usr/src/opencv/ -type d -empty -print -delete
 
-FROM node:18 As production
+FROM node:22.8.0 As production
 ENV OPENCV_BUILD_ROOT=/usr/src/opencv
 ENV OPENCV4NODEJS_AUTOBUILD_OPENCV_VERSION=4.6.0
 WORKDIR /usr/src/app
